@@ -3,11 +3,11 @@ package com.CH20444644.rating.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.CH20444644.rating.model.Assignments;
-import com.CH20444644.rating.model.Distributions;
 import com.CH20444644.rating.repository.AssignmentsRepository;
 import com.CH20444644.rating.service.AssignmentsService;
 
@@ -18,7 +18,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AssignmentsServiceImpl implements AssignmentsService {
 
-	private final AssignmentsRepository assignmentsRepository;
+	private AssignmentsRepository assignmentsRepository;
+	
+//	Constructor based Dependency Injection
+	@Autowired
+	AssignmentsServiceImpl(AssignmentsRepository assignmentsRepository){
+		this.assignmentsRepository=assignmentsRepository;
+	}
 
 	@Override
 	public Assignments createAssignments(Assignments assignment) {

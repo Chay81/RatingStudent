@@ -2,6 +2,7 @@ package com.CH20444644.rating.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,7 +24,14 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/apiv1")
 public class AssignmentsController {
 
-	private final AssignmentsService assignmentsService;
+	
+	private AssignmentsService assignmentsService;
+	
+//	Constructor based Dependency Injection
+	@Autowired
+	AssignmentsController(AssignmentsService assignmentsService){
+		this.assignmentsService=assignmentsService; 
+	}
 	
 	@GetMapping("/getAll")
 	public ResponseEntity<List<Assignments>> getAllDistributions() {
